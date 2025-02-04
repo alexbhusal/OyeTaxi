@@ -1,37 +1,48 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { View, Text, Button } from "react-native";
+import React from "react";
+import { Tabs, router } from "expo-router";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function _layout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
+    <Tabs>
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          headerTitle: "Home",
+          tabBarLabel: "Home",
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="history"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+          headerTitle: "History",
+          tabBarLabel: "History",
+        }}
+      />
+      <Tabs.Screen
+        name="Userdashboard"
+        options={{
+          headerTitle: "USER~DASHBOARD",
+          tabBarLabel: "Dashboard",
+          headerRight: () => (
+            <Button
+              title="Support"
+              onPress={() => {
+                router.push("/Support/Support");
+              }}
+            />
           ),
         }}
       />
+      {/* <Tabs.Screen
+        name="posts"
+        options={{
+          headerTitle: "posts",
+          tabBarLabel: "posts",
+          headerShown: false,
+        }}
+      /> */}
+
     </Tabs>
   );
 }
